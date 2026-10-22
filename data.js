@@ -9,15 +9,15 @@
  * ====================================================================
  */
 
-const STORAGE_KEY = 'PMO_CONTROL_CENTER_DATA_V3';
+const STORAGE_KEY = 'PMO_CONTROL_CENTER_DATA_V5';
 
 // 1. DATOS INICIALES POR DEFECTO DEL CASO OFICIAL N°6
 const DEFAULT_DATA = {
   evm: {
-    BAC: 150000,
-    PV: 85714,
-    EV: 83670,
-    AC: 80200,
+    BAC: 180000,
+    PV: 105000,
+    EV: 102500,
+    AC: 98000,
     currentWeek: 8,
     totalWeeks: 14
   },
@@ -87,7 +87,7 @@ const DEFAULT_DATA = {
       impactText: '+40 horas de desarrollo en robustecimiento criptográfico',
       problemDescription: 'Auditoría UE notificó obligatoriedad de certificar bajo Directiva NIS2: autenticación mTLS, cifrado AES-256 en tránsito y reposo, y trazabilidad criptográfica.',
       alternatives: [
-        { label: 'A) Ampliar presupuesto y plazo', status: 'Rechazada', reason: 'BAC fijo en €150.000, plazo contractual vinculante' },
+        { label: 'A) Ampliar presupuesto y plazo', status: 'Rechazada', reason: 'BAC fijo en €180.000, plazo contractual vinculante' },
         { label: 'B) Implementación parcial de NIS2', status: 'Rechazada', reason: 'No cumple requisitos para liberación de fondos UE' },
         { label: 'C) MoSCoW: Reasignar horas y usar contingencia', status: 'Aprobada', reason: 'Cumplimiento 100% regulatorio sin alterar la fecha final' }
       ],
@@ -203,7 +203,7 @@ const DEFAULT_DATA = {
       status: 'Aprobado',
       priority: 'Alta',
       summary: 'El proyecto de Monitoreo de Infraestructuras Críticas alcanza el 56.9% de avance físico real con un CPI de 1.046 y un SPI de 0.976. Se proyecta un superávit de €7.916 al cierre contractual.',
-      findings: '1. Rendimiento financiero favorable (+€3.470 de variación de costo CV favorable).\n2. El leve desfase de cronograma (-€2.044 SV) se encuentra contenido y no compromete el hito crítico H4.\n3. Los tres imprevistos mayores (RFC-001, RFC-002, RFC-003) fueron absorbidos exitosamente sin costo presupuestario adicional.',
+      findings: '1. Rendimiento financiero favorable (+€4.500 de variación de costo CV favorable).\n2. El leve desfase de cronograma (-€2.500 SV) se encuentra contenido y no compromete el hito crítico H4.\n3. Los tres imprevistos mayores (RFC-001, RFC-002, RFC-003) fueron absorbidos exitosamente sin costo presupuestario adicional.',
       agreements: '1. Autorizar el inicio de las pruebas de calibración en túnel secundario.\n2. Mantener la reserva de contingencia con saldo remanente de €10.950.\n3. Validar con la alcaldía el cronograma de corte nocturno para H4.',
       nextSteps: 'Despliegue de cuadrillas para pruebas de estrés de 100.000 lecturas/segundo y formalización del acta de mitigación de la directiva NIS2.'
     },
@@ -218,7 +218,7 @@ const DEFAULT_DATA = {
       priority: 'Alta',
       summary: 'Dictamen formal y unánime del CCB respecto a las soluciones de contingencia aplicadas ante fallas de API externa, cierre de túnel secundario y normativa NIS2.',
       findings: 'La estrategia de Adapter Pattern en NodeJS y Mock Server desacopló el frontend sin coste adicional. La técnica de Fast-Tracking absorbió el cierre vial de 10 días.',
-      agreements: 'Ratificar por unanimidad las resoluciones técnicas. El presupuesto BAC se mantiene inalterado en €150.000 y el plazo final en 14 semanas.',
+      agreements: 'Ratificar por unanimidad las resoluciones técnicas. El presupuesto BAC se mantiene inalterado en €180.000 y el plazo final en 14 semanas.',
       nextSteps: 'Cierre formal de los expedientes RFC en el repositorio de auditoría europea.'
     },
     {
@@ -237,12 +237,19 @@ const DEFAULT_DATA = {
     }
   ],
   budgetDistribution: {
-    labels: ['Personal y Equipo (71.4%)', 'Cloud e Infraestructura (15.3%)', 'Reserva de Contingencia (8.3%)', 'Licencias y Auditoría (5.0%)'],
-    amounts: [107100, 22950, 12450, 7500]
+    labels: ['RRHH Directos (52.2%)', 'Contingencia y Gestión (23.8%)', 'Infraestructura Cloud (14.0%)', 'Equipamiento/Licencias (10.0%)'],
+    amounts: [93968, 42832, 25200, 18000]
   },
   resourceProfiles: {
-    labels: ['Lead Developer Fullstack (35.8%)', 'Arquitecto Cloud & Ciber (26.9%)', 'Project Manager PMP (16.8%)', 'QA Automation (11.2%)', 'Consultor Ciberseguridad (9.2%)'],
-    amounts: [38400, 28800, 18000, 12000, 9900]
+    labels: [
+      'Project Manager / Scrum Master (€19.600)',
+      'Ing. Backend & IoT (€19.040)',
+      'Arquitecto Cloud & Ciber (€18.816)',
+      'Frontend & UI/UX (€16.800)',
+      'QA & DevOps (€12.544)',
+      'Consultor Vial (€7.168)'
+    ],
+    amounts: [19600, 19040, 18816, 16800, 12544, 7168]
   }
 };
 

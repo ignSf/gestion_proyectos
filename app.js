@@ -1533,10 +1533,9 @@ function updateAllCharts() {
   if (ctxEvmTrend) {
     if (PMO_APP.charts.evmTrend) PMO_APP.charts.evmTrend.destroy();
     const weeks = ['S1', 'S2', 'S3', 'S4', 'S5', 'S6', 'S7', 'S8', 'S9', 'S10', 'S11', 'S12', 'S13', 'S14'];
-    const pvStep = evm.BAC / 14;
-    const pvData = weeks.map((_, i) => Math.round(pvStep * (i + 1)));
-    const evData = [10714, 21000, 30500, 41000, 52800, 62000, 73000, evm.EV, null, null, null, null, null, null];
-    const acData = [9800, 19500, 29200, 39500, 50200, 60800, 70500, evm.AC, null, null, null, null, null, null];
+    const pvData = [13125, 26250, 39375, 52500, 65625, 78750, 91875, evm.PV, 117500, 130000, 142500, 155000, 167500, evm.BAC];
+    const evData = [12800, 25500, 38200, 51000, 64200, 76800, 89500, evm.EV, null, null, null, null, null, null];
+    const acData = [12000, 24100, 36200, 48500, 61000, 73200, 85600, evm.AC, null, null, null, null, null, null];
     const projEv = [null, null, null, null, null, null, null, evm.EV, Math.round(evm.EV + (evm.BAC - evm.EV) * 0.18), Math.round(evm.EV + (evm.BAC - evm.EV) * 0.36), Math.round(evm.EV + (evm.BAC - evm.EV) * 0.55), Math.round(evm.EV + (evm.BAC - evm.EV) * 0.72), Math.round(evm.EV + (evm.BAC - evm.EV) * 0.88), evm.BAC];
     const projAc = [null, null, null, null, null, null, null, evm.AC, Math.round(evm.AC + (evm.EAC - evm.AC) * 0.18), Math.round(evm.AC + (evm.EAC - evm.AC) * 0.36), Math.round(evm.AC + (evm.EAC - evm.AC) * 0.55), Math.round(evm.AC + (evm.EAC - evm.AC) * 0.72), Math.round(evm.AC + (evm.EAC - evm.AC) * 0.88), evm.EAC];
 
