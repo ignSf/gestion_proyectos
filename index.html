@@ -1,0 +1,2181 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Plataforma de Monitoreo y Control del Proyecto - Gestión Inteligente de Infraestructuras Críticas">
+  <title>PMO Control Center — Infraestructuras Críticas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- SIDEBAR NAVIGATION -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="logo-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+          <path d="M2 17l10 5 10-5"/>
+          <path d="M2 12l10 5 10-5"/>
+        </svg>
+      </div>
+      <div class="logo-text">
+        <span class="logo-title">PMO Center</span>
+        <span class="logo-sub">Infraestructuras Críticas</span>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a href="#" class="nav-item active" data-section="dashboard" onclick="navigateTo('dashboard', this)">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+        <span>Dashboard Ejecutivo</span>
+      </a>
+      <a href="#" class="nav-item" data-section="monitoreo" onclick="navigateTo('monitoreo', this)">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        <span>Monitoreo & Control</span>
+      </a>
+      <a href="#" class="nav-item" data-section="cambios" onclick="navigateTo('cambios', this)">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 3h5v5"/><path d="M8 21H3v-5"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg>
+        <span>Gestión del Cambio</span>
+      </a>
+      <a href="#" class="nav-item" data-section="recursos" onclick="navigateTo('recursos', this)">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        <span>Gestión de Recursos</span>
+      </a>
+      <a href="#" class="nav-item" data-section="eventualidades" onclick="navigateTo('eventualidades', this)">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        <span>Eventualidades</span>
+      </a>
+      <a href="#" class="nav-item" data-section="financiero" onclick="navigateTo('financiero', this)">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        <span>Control Financiero</span>
+      </a>
+      <a href="#" class="nav-item" data-section="rutacritica" onclick="navigateTo('rutacritica', this)">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        <span>Ruta Crítica & Gantt</span>
+      </a>
+      <a href="#" class="nav-item" data-section="estado" onclick="navigateTo('estado', this)">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        <span>Estado del Proyecto</span>
+      </a>
+      <a href="#" class="nav-item" data-section="reportes" onclick="navigateTo('reportes', this)">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        <span>Reportes</span>
+      </a>
+      <a href="#" class="nav-item" data-section="alertas" onclick="navigateTo('alertas', this)">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+        <span>Sistema de Alertas</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="project-badge">
+        <span class="badge-dot"></span>
+        <span>Caso N°6 — GPY1102</span>
+      </div>
+      <div class="team-info">Salazar · Carroza · Torres</div>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="main-content" id="mainContent">
+    <!-- TOP BAR -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="menu-toggle" onclick="toggleSidebar()">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+        <h1 class="page-title" id="pageTitle">Dashboard Ejecutivo</h1>
+      </div>
+      <div class="topbar-right">
+        <div class="topbar-actions" style="display:flex; gap:8px; margin-right:12px;">
+          <button class="btn btn-outline btn-sm" onclick="openEditMetricsModal()" title="Editar métricas EVM y presupuesto">⚙️ EVM</button>
+          <button class="btn btn-primary btn-sm" onclick="openNewReportModal()" title="Redactar nuevo informe manual">+ Informe</button>
+          <button class="btn btn-outline btn-sm" onclick="exportDataBackup()" title="Descargar respaldo de base de datos JSON">💾 Respaldo</button>
+          <button class="btn btn-outline btn-sm" onclick="openImportDataModal()" title="Cargar archivo JSON">📂 Cargar</button>
+        </div>
+        <div class="global-status" id="globalStatus">
+          <span class="status-dot green" id="globalStatusDot"></span>
+          <span class="status-text" id="globalStatusText">Proyecto Saludable</span>
+        </div>
+        <div class="date-display" id="topbarWeekDisplay">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          <span>Semana 8 de 14 — Corte: Oct 2026</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- SECTIONS CONTAINER -->
+    <div class="content-area" id="contentArea">
+
+      <!-- ===== SECTION 1: DASHBOARD EJECUTIVO ===== -->
+      <section class="section active" id="section-dashboard">
+        <!-- Dashboard Quick Toolbar -->
+        <div class="section-toolbar">
+          <div class="section-toolbar-left">
+            <span class="card-badge green">PMO Activa</span>
+            <span style="font-size:13px; color:var(--text-secondary);">Panel de control ejecutivo y simulación reactiva</span>
+          </div>
+          <div class="section-toolbar-right">
+            <button class="btn btn-primary btn-sm" onclick="openEditMetricsModal()">⚙️ Editar Métricas EVM</button>
+            <button class="btn btn-secondary btn-sm" onclick="openNewRfcModal()">➕ Registrar RFC</button>
+            <button class="btn btn-secondary btn-sm" onclick="openNewRiskModal()">➕ Registrar Riesgo</button>
+            <button class="btn btn-secondary btn-sm" onclick="openNewReportModal()">➕ Redactar Informe</button>
+            <button class="btn btn-outline btn-sm" onclick="resetAllData()">🔄 Restablecer Datos</button>
+          </div>
+        </div>
+        <!-- KPI Cards Row -->
+        <div class="kpi-row">
+          <div class="kpi-card">
+            <div class="kpi-icon green-bg">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            </div>
+            <div class="kpi-body">
+              <span class="kpi-label">Avance del Proyecto</span>
+              <span class="kpi-value" id="kpiProgressVal">56.9%</span>
+              <span class="kpi-sub green">↑ Semana 8/14</span>
+            </div>
+            <div class="kpi-ring" data-percent="56.9" data-color="#10b981"></div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-icon blue-bg">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            </div>
+            <div class="kpi-body">
+              <span class="kpi-label">Costo Ejecutado</span>
+              <span class="kpi-value" id="kpiAcVal">€80.200</span>
+              <span class="kpi-sub green">↓ €4.500 bajo presupuesto</span>
+            </div>
+            <div class="kpi-ring" data-percent="54.4" data-color="#3b82f6"></div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-icon amber-bg">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div class="kpi-body">
+              <span class="kpi-label">Cronograma (SPI)</span>
+              <span class="kpi-value" id="kpiSpiVal">0.976</span>
+              <span class="kpi-sub amber">⚠ Desfase menor 2.3%</span>
+            </div>
+            <div class="kpi-ring" data-percent="97.6" data-color="#f59e0b"></div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-icon green-bg">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            </div>
+            <div class="kpi-body">
+              <span class="kpi-label">Eficiencia de Costo (CPI)</span>
+              <span class="kpi-value" id="kpiCpiVal">1.046</span>
+              <span class="kpi-sub green">✓ Sobre presupuesto óptimo</span>
+            </div>
+            <div class="kpi-ring" data-percent="100" data-color="#10b981"></div>
+          </div>
+        </div>
+
+        <!-- Second Row: Charts -->
+        <div class="grid-2col">
+          <div class="card">
+            <div class="card-header">
+              <h3>Semáforo Global del Proyecto</h3>
+              <span class="card-badge green">Saludable</span>
+            </div>
+            <div class="card-body">
+              <div class="traffic-light-container">
+                <div class="traffic-light">
+                  <div class="tl-light red">
+                    <span class="tl-label">Crítico</span>
+                    <span class="tl-desc">Acción inmediata</span>
+                  </div>
+                  <div class="tl-light yellow">
+                    <span class="tl-label">Precaución</span>
+                    <span class="tl-desc">Desviación detectada</span>
+                  </div>
+                  <div class="tl-light green active">
+                    <span class="tl-label">Normal</span>
+                    <span class="tl-desc">Dentro de objetivos</span>
+                  </div>
+                </div>
+                <div class="traffic-details">
+                  <div class="td-item">
+                    <span class="td-label">Alcance</span>
+                    <span class="td-status green-pill">✓ EN META</span>
+                  </div>
+                  <div class="td-item">
+                    <span class="td-label">Presupuesto (BAC)</span>
+                    <span class="td-status green-pill" id="kpiBacVal">€150.000</span>
+                  </div>
+                  <div class="td-item">
+                    <span class="td-label">Variación Final (VAC)</span>
+                    <span class="td-status green-pill" id="kpiVacVal">+€6.597</span>
+                  </div>
+                  <div class="td-item">
+                    <span class="td-label">Cronograma</span>
+                    <span class="td-status amber-pill">⚠ LEVE DESFASE</span>
+                  </div>
+                  <div class="td-item">
+                    <span class="td-label">Calidad</span>
+                    <span class="td-status green-pill">✓ EXCELENTE</span>
+                  </div>
+                  <div class="td-item">
+                    <span class="td-label">Riesgos</span>
+                    <span class="td-status green-pill">✓ CONTROLADOS</span>
+                  </div>
+                  <div class="td-item">
+                    <span class="td-label">Ciberseguridad</span>
+                    <span class="td-status green-pill">✓ NIS2 OK</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <h3>Avance por Hitos</h3>
+              <span class="card-badge blue">5 Hitos</span>
+            </div>
+            <div class="card-body">
+              <div class="milestone-timeline">
+                <div class="ms-item completed">
+                  <div class="ms-marker">✓</div>
+                  <div class="ms-info">
+                    <span class="ms-name">H1: Arquitectura IoT</span>
+                    <span class="ms-date">Semana 2</span>
+                  </div>
+                  <div class="ms-bar"><div class="ms-fill" style="width:100%"></div></div>
+                  <span class="ms-pct">100%</span>
+                </div>
+                <div class="ms-item completed">
+                  <div class="ms-marker">✓</div>
+                  <div class="ms-info">
+                    <span class="ms-name">H2: Motor de Umbrales</span>
+                    <span class="ms-date">Semana 5</span>
+                  </div>
+                  <div class="ms-bar"><div class="ms-fill" style="width:100%"></div></div>
+                  <span class="ms-pct">100%</span>
+                </div>
+                <div class="ms-item current">
+                  <div class="ms-marker">◉</div>
+                  <div class="ms-info">
+                    <span class="ms-name">H3: Dashboard Piloto</span>
+                    <span class="ms-date">Semana 8</span>
+                  </div>
+                  <div class="ms-bar"><div class="ms-fill" style="width:85%"></div></div>
+                  <span class="ms-pct">85%</span>
+                </div>
+                <div class="ms-item pending">
+                  <div class="ms-marker">○</div>
+                  <div class="ms-info">
+                    <span class="ms-name">H4: Escalado Túnel Principal</span>
+                    <span class="ms-date">Semana 11</span>
+                  </div>
+                  <div class="ms-bar"><div class="ms-fill" style="width:0%"></div></div>
+                  <span class="ms-pct">0%</span>
+                </div>
+                <div class="ms-item pending">
+                  <div class="ms-marker">○</div>
+                  <div class="ms-info">
+                    <span class="ms-name">H5: Validación y Cierre</span>
+                    <span class="ms-date">Semana 14</span>
+                  </div>
+                  <div class="ms-bar"><div class="ms-fill" style="width:0%"></div></div>
+                  <span class="ms-pct">0%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Third Row: EVM Summary + Resources Overview -->
+        <div class="grid-2col">
+          <div class="card">
+            <div class="card-header">
+              <h3>Resumen EVM — Valor Ganado</h3>
+            </div>
+            <div class="card-body">
+              <canvas id="evmChart" height="280"></canvas>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">
+              <h3>Distribución Presupuestaria</h3>
+            </div>
+            <div class="card-body">
+              <canvas id="budgetChart" height="280"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <!-- KPIs Quality Row -->
+        <div class="card">
+          <div class="card-header">
+            <h3>KPIs de Calidad de Software</h3>
+            <span class="card-badge green">Todos en Meta</span>
+          </div>
+          <div class="card-body">
+            <div class="kpi-grid-4">
+              <div class="quality-kpi">
+                <div class="qk-bar-container">
+                  <div class="qk-bar" style="--pct:<span id="telemetryUptime">99.88%</span>; --color: #10b981">
+                    <span class="qk-value">99.88%</span>
+                  </div>
+                </div>
+                <span class="qk-label">Uptime IoT</span>
+                <span class="qk-target">Meta: >99.5%</span>
+              </div>
+              <div class="quality-kpi">
+                <div class="qk-bar-container">
+                  <div class="qk-bar" style="--pct:64%; --color: #10b981">
+                    <span class="qk-value"><span id="telemetryLatency">3.2s</span></span>
+                  </div>
+                </div>
+                <span class="qk-label">Latencia Alertas</span>
+                <span class="qk-target">Meta: <5.0s</span>
+              </div>
+              <div class="quality-kpi">
+                <div class="qk-bar-container">
+                  <div class="qk-bar" style="--pct:<span id="telemetryTestCoverage">92.4%</span>; --color: #3b82f6">
+                    <span class="qk-value">92.4%</span>
+                  </div>
+                </div>
+                <span class="qk-label">Cobertura Tests</span>
+                <span class="qk-target">Meta: >80%</span>
+              </div>
+              <div class="quality-kpi">
+                <div class="qk-bar-container">
+                  <div class="qk-bar" style="--pct:94.2%; --color: #8b5cf6">
+                    <span class="qk-value">94.2%</span>
+                  </div>
+                </div>
+                <span class="qk-label">Resolución Tickets</span>
+                <span class="qk-target">Meta: >90%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== SECTION 2: MONITOREO & CONTROL ===== -->
+      <section class="section" id="section-monitoreo">
+        <!-- Monitoreo Toolbar -->
+        <div class="section-toolbar">
+          <div class="section-toolbar-left">
+            <span class="card-badge blue">Telemetría de Infraestructura</span>
+            <span style="font-size:13px; color:var(--text-secondary);">Monitoreo en tiempo real de túneles y pipeline cloud</span>
+          </div>
+          <div class="section-toolbar-right">
+            <button class="btn btn-primary btn-sm" onclick="openTelemetryModal()">⚙️ Ajustar Telemetría Manual</button>
+            <button class="btn btn-secondary btn-sm" onclick="openNewRfcModal()">➕ Registrar Incidente / RFC</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h3>Arquitectura del Sistema de Monitoreo y Control</h3>
+            <span class="card-badge blue">5 Flujos</span>
+          </div>
+          <div class="card-body">
+            <p class="card-desc">Sistema con arquitectura orientada a eventos y microservicios en la nube, articulado a través de cinco flujos continuos de información, diseñado para salvaguardar la triple restricción del proyecto.</p>
+            <div class="arch-diagram" id="archDiagram">
+              <div class="arch-row">
+                <div class="arch-node sensor-node">
+                  <div class="arch-icon">📡</div>
+                  <span>Sensores IoT</span>
+                  <small>Galgas · Acelerómetros · CO/NO2</small>
+                </div>
+                <div class="arch-arrow">→<small>MQTT/TLS 1.3</small></div>
+                <div class="arch-node gateway-node">
+                  <div class="arch-icon">🔌</div>
+                  <span>API Gateway</span>
+                  <small>Validación · HMAC-SHA256</small>
+                </div>
+                <div class="arch-arrow">→<small>Buffer Kafka</small></div>
+                <div class="arch-node engine-node">
+                  <div class="arch-icon">⚙️</div>
+                  <span>Motor de Reglas</span>
+                  <small>Umbrales Verde/Amarillo/Rojo</small>
+                </div>
+              </div>
+              <div class="arch-row-split">
+                <div class="arch-branch">
+                  <div class="arch-arrow-down">↓</div>
+                  <div class="arch-node green-node">
+                    <div class="arch-icon">🟢</div>
+                    <span>Normal</span>
+                    <small>TimescaleDB</small>
+                  </div>
+                </div>
+                <div class="arch-branch">
+                  <div class="arch-arrow-down">↓</div>
+                  <div class="arch-node alert-node">
+                    <div class="arch-icon">🔴</div>
+                    <span>Alerta Crítica</span>
+                    <small>SMS/Push < 5s</small>
+                  </div>
+                </div>
+                <div class="arch-branch">
+                  <div class="arch-arrow-down">↓</div>
+                  <div class="arch-node ticket-node">
+                    <div class="arch-icon">🎫</div>
+                    <span>Ticket Mant.</span>
+                    <small>SLA Prev/Correctivo</small>
+                  </div>
+                </div>
+              </div>
+              <div class="arch-row">
+                <div class="arch-node dashboard-node full-width-node">
+                  <div class="arch-icon">📊</div>
+                  <span>Dashboard de Gestión Centralizada (Sala de Proyectos)</span>
+                  <small>Visualización GIS · Métricas EVM · Toma de Decisiones Directivas</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Flujos de Información Detallados -->
+        <div class="grid-2col">
+          <div class="card">
+            <div class="card-header"><h3>Flujos del Sistema</h3></div>
+            <div class="card-body">
+              <div class="flow-list">
+                <div class="flow-item">
+                  <span class="flow-num">F1</span>
+                  <div class="flow-info">
+                    <strong>Captura e Ingesta IoT</strong>
+                    <p>Sensores → MQTT/TLS 1.3 → API Gateway. Telemetría cada 30 seg con HMAC-SHA256.</p>
+                  </div>
+                </div>
+                <div class="flow-item">
+                  <span class="flow-num">F2</span>
+                  <div class="flow-info">
+                    <strong>Normalización y Buffer</strong>
+                    <p>API Gateway → Kafka/Event Hubs (5.000 lecturas/seg) → TimescaleDB Cloud.</p>
+                  </div>
+                </div>
+                <div class="flow-item">
+                  <span class="flow-num">F3</span>
+                  <div class="flow-info">
+                    <strong>Motor de Reglas y Umbrales</strong>
+                    <p>Evaluación en ms: Verde (Normal), Amarillo (Ticket < 5 min), Rojo (Alerta < 5 seg).</p>
+                  </div>
+                </div>
+                <div class="flow-item">
+                  <span class="flow-num">F4</span>
+                  <div class="flow-info">
+                    <strong>Dashboard Centralizado</strong>
+                    <p>React + GIS/WebGL. Mapas interactivos, gemelos digitales, series temporales.</p>
+                  </div>
+                </div>
+                <div class="flow-item">
+                  <span class="flow-num">F5</span>
+                  <div class="flow-info">
+                    <strong>Gestión de Mantenimiento</strong>
+                    <p>ITIL v4. Ciclo de vida de OT, MTTR, balanceo de cuadrillas, reducción OPEX.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header"><h3>Modelo de Gobernanza</h3></div>
+            <div class="card-body">
+              <div class="governance-model">
+                <div class="gov-level">
+                  <div class="gov-badge strategic">Nivel Estratégico</div>
+                  <div class="gov-detail">
+                    <strong>Comité de Seguimiento Quincenal</strong>
+                    <p>Revisión de curvas EVM, validación de indicadores con patrocinadores (Alcaldía + UE)</p>
+                    <span class="gov-freq">📅 Cada 2 semanas</span>
+                  </div>
+                </div>
+                <div class="gov-level">
+                  <div class="gov-badge tactical">Nivel Táctico</div>
+                  <div class="gov-detail">
+                    <strong>Sprints Scrum Bisemanales</strong>
+                    <p>Ciclos de desarrollo con ceremonia completa: Planning, Review, Retro</p>
+                    <span class="gov-freq">📅 Sprints de 2 semanas</span>
+                  </div>
+                </div>
+                <div class="gov-level">
+                  <div class="gov-badge operational">Nivel Operativo</div>
+                  <div class="gov-detail">
+                    <strong>Daily Standups</strong>
+                    <p>Detección temprana de impedimentos, sincronización del equipo</p>
+                    <span class="gov-freq">📅 Diario — 15 min</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- BPMN Process -->
+        <div class="card">
+          <div class="card-header"><h3>Proceso BPMN — Flujo de Monitoreo, Control y Aprobación</h3></div>
+          <div class="card-body">
+            <div class="bpmn-flow">
+              <div class="bpmn-lane">
+                <div class="bpmn-lane-label">Sensores / Proveedor</div>
+                <div class="bpmn-steps">
+                  <div class="bpmn-start">●</div>
+                  <div class="bpmn-arrow">→</div>
+                  <div class="bpmn-task">Captura Telemetría</div>
+                  <div class="bpmn-arrow">→</div>
+                  <div class="bpmn-task">Transmisión MQTT</div>
+                </div>
+              </div>
+              <div class="bpmn-lane">
+                <div class="bpmn-lane-label">Plataforma Cloud</div>
+                <div class="bpmn-steps">
+                  <div class="bpmn-arrow">→</div>
+                  <div class="bpmn-task">Validación API</div>
+                  <div class="bpmn-arrow">→</div>
+                  <div class="bpmn-task">Buffer Kafka</div>
+                  <div class="bpmn-arrow">→</div>
+                  <div class="bpmn-gateway">◇</div>
+                  <div class="bpmn-label">¿Umbral excedido?</div>
+                </div>
+              </div>
+              <div class="bpmn-lane">
+                <div class="bpmn-lane-label">Equipo / Dirección</div>
+                <div class="bpmn-steps">
+                  <div class="bpmn-split">
+                    <div class="bpmn-path">
+                      <span class="bpmn-cond green">No</span>
+                      <div class="bpmn-task green-task">Registro Normal</div>
+                      <div class="bpmn-arrow">→</div>
+                      <div class="bpmn-task">Dashboard</div>
+                    </div>
+                    <div class="bpmn-path">
+                      <span class="bpmn-cond amber">Amarillo</span>
+                      <div class="bpmn-task amber-task">Ticket Preventivo</div>
+                      <div class="bpmn-arrow">→</div>
+                      <div class="bpmn-task">Asignación Cuadrilla</div>
+                    </div>
+                    <div class="bpmn-path">
+                      <span class="bpmn-cond red">Rojo</span>
+                      <div class="bpmn-task red-task">Alerta Crítica</div>
+                      <div class="bpmn-arrow">→</div>
+                      <div class="bpmn-task">Comité de Emergencia</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hitos con entradas/salidas/responsables -->
+        <div class="card">
+          <div class="card-header"><h3>Hitos Clave — Entradas, Salidas y Responsables</h3></div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Hito</th>
+                    <th>Fase</th>
+                    <th>Semana</th>
+                    <th>Entradas</th>
+                    <th>Salidas / Entregables</th>
+                    <th>Responsable</th>
+                    <th>Criterio de Aceptación</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="badge green">H1</span></td>
+                    <td>Arquitectura IoT</td>
+                    <td>Sem 02</td>
+                    <td>Requisitos de negocio, especificaciones IoT del proveedor</td>
+                    <td>Contrato OpenAPI 3.0, arquitectura cloud documentada</td>
+                    <td>Arquitecto Cloud</td>
+                    <td>Latencia < 200ms, pruebas mock aprobadas</td>
+                  </tr>
+                  <tr>
+                    <td><span class="badge green">H2</span></td>
+                    <td>Motor de Umbrales</td>
+                    <td>Sem 05</td>
+                    <td>Datos de sensores normalizados, matrices de tolerancia</td>
+                    <td>Motor de reglas funcional, suite de pruebas sintéticas</td>
+                    <td>Ingeniero Backend</td>
+                    <td>100% escenarios Verde/Amarillo/Rojo sin falsos positivos</td>
+                  </tr>
+                  <tr>
+                    <td><span class="badge amber">H3</span></td>
+                    <td>Dashboard Piloto</td>
+                    <td>Sem 08</td>
+                    <td>Motor de umbrales certificado, telemetría del túnel secundario</td>
+                    <td>Dashboard React operativo, piloto en Túnel Secundario</td>
+                    <td>Frontend Dev</td>
+                    <td>14 días telemetría ininterrumpida, Uptime > 99.5%</td>
+                  </tr>
+                  <tr>
+                    <td><span class="badge gray">H4</span></td>
+                    <td>Escalado Túnel Principal</td>
+                    <td>Sem 11</td>
+                    <td>Piloto validado, permisos de acceso municipal</td>
+                    <td>Conexión masiva sensores, módulo de tickets activo</td>
+                    <td>Ingeniero Backend + QA</td>
+                    <td>Pruebas de carga concurrente aprobadas</td>
+                  </tr>
+                  <tr>
+                    <td><span class="badge gray">H5</span></td>
+                    <td>Validación y Cierre</td>
+                    <td>Sem 14</td>
+                    <td>Sistema completo operativo, documentación NIS2</td>
+                    <td>Certificación municipal, auditoría UE, traspaso a operaciones</td>
+                    <td>Project Manager</td>
+                    <td>Certificación Dirección de Tránsito + auditoría fondos UE</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== SECTION 3: GESTIÓN DEL CAMBIO ===== -->
+      <section class="section" id="section-cambios">
+        <div class="card">
+          <div class="card-header">
+            <h3>Protocolo de Gestión del Cambio — 5 Etapas</h3>
+          </div>
+          <div class="card-body">
+            <div class="change-protocol">
+              <div class="cp-step">
+                <div class="cp-num">1</div>
+                <div class="cp-info">
+                  <strong>Solicitud de Cambio (RFC)</strong>
+                  <p>Registro formal del problema detectado con descripción, fecha y responsable</p>
+                </div>
+              </div>
+              <div class="cp-connector">→</div>
+              <div class="cp-step">
+                <div class="cp-num">2</div>
+                <div class="cp-info">
+                  <strong>Análisis de Impacto</strong>
+                  <p>Evaluación en la Triple Restricción: Alcance, Tiempo y Costo</p>
+                </div>
+              </div>
+              <div class="cp-connector">→</div>
+              <div class="cp-step">
+                <div class="cp-num">3</div>
+                <div class="cp-info">
+                  <strong>Dictamen CCB</strong>
+                  <p>Comité de Control de Cambios aprueba, rechaza o modifica</p>
+                </div>
+              </div>
+              <div class="cp-connector">→</div>
+              <div class="cp-step">
+                <div class="cp-num">4</div>
+                <div class="cp-info">
+                  <strong>Replanificación MoSCoW</strong>
+                  <p>Priorización ágil en Product Backlog: Must/Should/Could/Won't</p>
+                </div>
+              </div>
+              <div class="cp-connector">→</div>
+              <div class="cp-step">
+                <div class="cp-num">5</div>
+                <div class="cp-info">
+                  <strong>Despliegue y Comunicación</strong>
+                  <p>Ejecución del cambio, actualización de línea base y notificación</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Toolbar y Contenedor Dinámico de RFCs -->
+        <div class="section-toolbar">
+          <div class="section-toolbar-left">
+            <span class="card-badge blue">Gestión del Cambio & CCB</span>
+            <span style="font-size:13px; color:var(--text-secondary);">Registro, dictamen y trazabilidad de solicitudes de cambio</span>
+          </div>
+          <div class="section-toolbar-right">
+            <button class="btn btn-primary btn-sm" onclick="openNewRfcModal()">➕ Registrar Nueva Solicitud (RFC)</button>
+            <button class="btn btn-outline btn-sm" onclick="resetAllData()">🔄 Restablecer Valores Oficiales</button>
+          </div>
+        </div>
+
+        <div id="rfcCardsContainer">
+          <!-- Renderizado dinámico desde app.js -->
+        </div>
+
+        <!-- Traceability -->
+        <div class="card">
+          <div class="card-header"><h3>Matriz de Trazabilidad de Cambios</h3></div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>RFC #</th>
+                    <th>Tipo</th>
+                    <th>Semana</th>
+                    <th>Impacto Alcance</th>
+                    <th>Impacto Costo</th>
+                    <th>Impacto Tiempo</th>
+                    <th>Decisión CCB</th>
+                    <th>Estado</th>
+                  </tr>
+                </thead>
+                <tbody id="rfcTraceabilityBody">
+                  <!-- Renderizado dinámico -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== SECTION 4: GESTIÓN DE RECURSOS ===== -->
+      <section class="section" id="section-recursos">
+        <div class="grid-2col">
+          <div class="card">
+            <div class="card-header"><h3>Asignación de Personal</h3></div>
+            <div class="card-body">
+              <div class="resource-cards">
+                <div class="res-card">
+                  <div class="res-avatar pm">PM</div>
+                  <div class="res-info">
+                    <strong>Project Manager / Scrum Master</strong>
+                    <span>1.0 FTE · 560h · €35/h</span>
+                    <div class="res-bar"><div class="res-fill" style="width:85%"></div></div>
+                    <span class="res-utilization">Utilización: 85%</span>
+                  </div>
+                  <span class="res-cost">€19.600</span>
+                </div>
+                <div class="res-card">
+                  <div class="res-avatar arch">AC</div>
+                  <div class="res-info">
+                    <strong>Arquitecto Cloud & Ciberseguridad</strong>
+                    <span>0.8 FTE · 448h · €42/h</span>
+                    <div class="res-bar"><div class="res-fill" style="width:92%"></div></div>
+                    <span class="res-utilization">Utilización: 92%</span>
+                  </div>
+                  <span class="res-cost">€18.816</span>
+                </div>
+                <div class="res-card">
+                  <div class="res-avatar back">BE</div>
+                  <div class="res-info">
+                    <strong>Ingeniero Backend & IoT</strong>
+                    <span>1.0 FTE · 560h · €34/h</span>
+                    <div class="res-bar"><div class="res-fill" style="width:88%"></div></div>
+                    <span class="res-utilization">Utilización: 88%</span>
+                  </div>
+                  <span class="res-cost">€19.040</span>
+                </div>
+                <div class="res-card">
+                  <div class="res-avatar front">FE</div>
+                  <div class="res-info">
+                    <strong>Desarrollador Frontend & UI/UX</strong>
+                    <span>1.0 FTE · 560h · €30/h</span>
+                    <div class="res-bar"><div class="res-fill" style="width:80%"></div></div>
+                    <span class="res-utilization">Utilización: 80%</span>
+                  </div>
+                  <span class="res-cost">€16.800</span>
+                </div>
+                <div class="res-card">
+                  <div class="res-avatar qa">QA</div>
+                  <div class="res-info">
+                    <strong>Ingeniero QA, Testing & DevOps</strong>
+                    <span>0.8 FTE · 448h · €28/h</span>
+                    <div class="res-bar"><div class="res-fill" style="width:82%"></div></div>
+                    <span class="res-utilization">Utilización: 82%</span>
+                  </div>
+                  <span class="res-cost">€12.544</span>
+                </div>
+                <div class="res-card">
+                  <div class="res-avatar cons">CV</div>
+                  <div class="res-info">
+                    <strong>Consultor Infraestructura Vial</strong>
+                    <span>0.4 FTE · 224h · €32/h</span>
+                    <div class="res-bar"><div class="res-fill" style="width:60%"></div></div>
+                    <span class="res-utilization">Utilización: 60%</span>
+                  </div>
+                  <span class="res-cost">€7.168</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header"><h3>Distribución de Costos por Categoría</h3></div>
+            <div class="card-body">
+              <canvas id="resourcePieChart" height="260"></canvas>
+              <div class="cost-summary" style="margin-top: 16px;">
+                <div class="cs-row"><span>RRHH Directos</span><span class="cs-val">€93.968 (52.2%)</span></div>
+                <div class="cs-row"><span>Infraestructura Cloud</span><span class="cs-val">€25.200 (14.0%)</span></div>
+                <div class="cs-row"><span>Equipamiento/Licencias</span><span class="cs-val">€18.000 (10.0%)</span></div>
+                <div class="cs-row"><span>Contingencia y Gestión</span><span class="cs-val">€42.832 (23.8%)</span></div>
+                <div class="cs-row total"><span>TOTAL BAC</span><span class="cs-val">€180.000</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Recommendations -->
+        <div class="card">
+          <div class="card-header">
+            <h3>Recomendaciones Automáticas de Optimización</h3>
+            <span class="card-badge green">Sistema de IA</span>
+          </div>
+          <div class="card-body">
+            <div class="recommendations">
+              <div class="rec-item green-rec">
+                <div class="rec-icon">💰</div>
+                <div class="rec-content">
+                  <strong>Optimización de Reserva de Contingencia</strong>
+                  <p>Con 3 de 3 imprevistos resueltos sin costo adicional y CPI > 1.0, se recomienda <strong>reasignar €10.000 de la reserva de contingencia</strong> hacia el fortalecimiento del equipo de QA durante el escalado al Túnel Principal (H4), incrementando la cobertura de pruebas de carga.</p>
+                  <span class="rec-impact">Impacto: Reducción del riesgo de escalado en un 35%</span>
+                </div>
+              </div>
+              <div class="rec-item blue-rec">
+                <div class="rec-icon">👤</div>
+                <div class="rec-content">
+                  <strong>Mitigación de Single Point of Failure en Ciberseguridad</strong>
+                  <p>El Arquitecto Cloud es el único responsable de NIS2. Se recomienda <strong>documentar procedimientos de seguridad y capacitar al Ingeniero Backend</strong> como respaldo, utilizando 16 horas de la reserva.</p>
+                  <span class="rec-impact">Impacto: Eliminación de riesgo de persona clave</span>
+                </div>
+              </div>
+              <div class="rec-item amber-rec">
+                <div class="rec-icon">⚡</div>
+                <div class="rec-content">
+                  <strong>Incremento de Dedicación del Consultor Vial</strong>
+                  <p>Para el H4 (escalado al Túnel Principal), se recomienda <strong>elevar la dedicación del Consultor de 0.4 a 0.6 FTE durante las semanas 9-11</strong> para asegurar la calibración de umbrales específicos del túnel principal.</p>
+                  <span class="rec-impact">Impacto: Reducción del tiempo de calibración en 40%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ROI and Viability -->
+        <div class="card">
+          <div class="card-header"><h3>Análisis de Viabilidad, Rentabilidad y ROI</h3></div>
+          <div class="card-body">
+            <div class="roi-grid">
+              <div class="roi-card">
+                <span class="roi-label">Gasto Actual Mantenimiento Reactivo</span>
+                <span class="roi-value red-text">€380.000/año</span>
+              </div>
+              <div class="roi-card">
+                <span class="roi-label">Reducción Estimada por Sistema Predictivo</span>
+                <span class="roi-value">42%</span>
+              </div>
+              <div class="roi-card">
+                <span class="roi-label">Ahorro Directo Anual</span>
+                <span class="roi-value green-text">€159.600/año</span>
+              </div>
+              <div class="roi-card">
+                <span class="roi-label">OPEX Cloud Anual</span>
+                <span class="roi-value">€21.600/año</span>
+              </div>
+              <div class="roi-card highlight-card">
+                <span class="roi-label">Beneficio Neto Anual</span>
+                <span class="roi-value green-text">€138.000/año</span>
+              </div>
+              <div class="roi-card highlight-card">
+                <span class="roi-label">Payback (Recuperación Inversión)</span>
+                <span class="roi-value green-text">1.3 años (15.6 meses)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== SECTION 5: EVENTUALIDADES ===== -->
+      <section class="section" id="section-eventualidades">
+        <!-- Eventualidades Toolbar -->
+        <div class="section-toolbar">
+          <div class="section-toolbar-left">
+            <span class="card-badge amber">Matriz y Registro de Riesgos</span>
+            <span style="font-size:13px; color:var(--text-secondary);">Planes preventivos, mitigación y contingencia operativa</span>
+          </div>
+          <div class="section-toolbar-right">
+            <button class="btn btn-primary btn-sm" onclick="openNewRiskModal()">➕ Registrar Nuevo Riesgo</button>
+            <button class="btn btn-outline btn-sm" onclick="resetAllData()">🔄 Restablecer Riesgos Oficiales</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h3>Matriz de Riesgos y Eventualidades</h3>
+            <span class="card-badge amber">Monitoreo Activo</span>
+          </div>
+          <div class="card-body">
+            <div class="risk-matrix" id="riskMatrix">
+              <div class="rm-header">
+                <div class="rm-corner">Probabilidad ↓ / Impacto →</div>
+                <div class="rm-col-head">Bajo</div>
+                <div class="rm-col-head">Medio</div>
+                <div class="rm-col-head">Alto</div>
+                <div class="rm-col-head">Crítico</div>
+              </div>
+              <div class="rm-row">
+                <div class="rm-row-head">Alta</div>
+                <div class="rm-cell yellow"></div>
+                <div class="rm-cell orange"></div>
+                <div class="rm-cell red">
+                  <div class="rm-risk" title="R1: Inestabilidad API proveedor">R1 ✓</div>
+                </div>
+                <div class="rm-cell darkred"></div>
+              </div>
+              <div class="rm-row">
+                <div class="rm-row-head">Media</div>
+                <div class="rm-cell green"></div>
+                <div class="rm-cell yellow">
+                  <div class="rm-risk" title="R4: Dependencia municipal H4">R4</div>
+                </div>
+                <div class="rm-cell orange">
+                  <div class="rm-risk" title="R2: Cierre túnel físico">R2 ✓</div>
+                </div>
+                <div class="rm-cell red">
+                  <div class="rm-risk" title="R5: Concentración conocimiento NIS2">R5</div>
+                </div>
+              </div>
+              <div class="rm-row">
+                <div class="rm-row-head">Baja</div>
+                <div class="rm-cell green"></div>
+                <div class="rm-cell green"></div>
+                <div class="rm-cell yellow">
+                  <div class="rm-risk" title="R3: Regulación NIS2 sobrevenida">R3 ✓</div>
+                </div>
+                <div class="rm-cell orange">
+                  <div class="rm-risk" title="R6: Margen ajustado H4-H5">R6</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Detailed Risk Register -->
+        <div class="card">
+          <div class="card-header"><h3>Registro Detallado de Eventualidades</h3></div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="data-table risk-table">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Riesgo / Eventualidad</th>
+                    <th>Tipo</th>
+                    <th>Prob.</th>
+                    <th>Impacto</th>
+                    <th>Criticidad</th>
+                    <th>Plan de Mitigación</th>
+                    <th>Plan de Contingencia</th>
+                    <th>Estado</th>
+                  </tr>
+                </thead>
+                <tbody id="riskTableBody">
+                  <!-- Renderizado dinámico -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Agile Strategies -->
+        <div class="card">
+          <div class="card-header"><h3>Estrategias Ágiles de Respuesta a Eventualidades</h3></div>
+          <div class="card-body">
+            <div class="strategies-grid">
+              <div class="strategy-card">
+                <div class="str-icon">🔄</div>
+                <h4>Adapter Pattern</h4>
+                <p>Desacoplamiento técnico ante inestabilidad de servicios externos mediante capa intermedia que normaliza interfaces cambiantes.</p>
+                <span class="str-used">Usado en: IMP-001</span>
+                <span class="str-integrity">✅ Integridad del plan: Preservada al 100%</span>
+              </div>
+              <div class="strategy-card">
+                <div class="str-icon">⚡</div>
+                <h4>Fast-Tracking</h4>
+                <p>Ejecución de actividades en paralelo que originalmente eran secuenciales, permitiendo absorber bloqueos externos sin retrasos netos.</p>
+                <span class="str-used">Usado en: IMP-002</span>
+                <span class="str-integrity">✅ Integridad del plan: Preservada al 100%</span>
+              </div>
+              <div class="strategy-card">
+                <div class="str-icon">📊</div>
+                <h4>Priorización MoSCoW</h4>
+                <p>Clasificación del alcance en Must/Should/Could/Won't para sacrificar funcionalidades de bajo valor y proteger las críticas.</p>
+                <span class="str-used">Usado en: IMP-003</span>
+                <span class="str-integrity">✅ Integridad del plan: Preservada al 100%</span>
+              </div>
+              <div class="strategy-card">
+                <div class="str-icon">🔨</div>
+                <h4>Crashing (Previsto para H4-H5)</h4>
+                <p>Adición controlada de recursos o horas extra para comprimir la duración de actividades críticas, manteniendo un máximo de 20%.</p>
+                <span class="str-used">Preparado para: R6</span>
+                <span class="str-integrity">⚠️ Aplica solo si margen H4-H5 se reduce</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== SECTION 6: CONTROL FINANCIERO ===== -->
+      <section class="section" id="section-financiero">
+        <!-- Financiero Toolbar -->
+        <div class="section-toolbar">
+          <div class="section-toolbar-left">
+            <span class="card-badge green">Control Financiero & EVM</span>
+            <span style="font-size:13px; color:var(--text-secondary);">Análisis de Valor Ganado, variaciones y simulador predictivo</span>
+          </div>
+          <div class="section-toolbar-right">
+            <button class="btn btn-primary btn-sm" onclick="openEditMetricsModal()">⚙️ Editar Métricas EVM</button>
+            <button class="btn btn-outline btn-sm" onclick="resetAllData()">🔄 Restablecer Valores Oficiales</button>
+          </div>
+        </div>
+
+        <div class="kpi-row">
+          <div class="kpi-card">
+            <div class="kpi-icon green-bg">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            </div>
+            <div class="kpi-body">
+              <span class="kpi-label">CPI</span>
+              <span class="kpi-value" style="color:#10b981">1.046</span>
+              <span class="kpi-sub green">Cada €1 gastado = €1.05 de valor</span>
+            </div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-icon amber-bg">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div class="kpi-body">
+              <span class="kpi-label">SPI</span>
+              <span class="kpi-value" style="color:#f59e0b">0.976</span>
+              <span class="kpi-sub amber">Leve desfase controlado</span>
+            </div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-icon blue-bg">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            </div>
+            <div class="kpi-body">
+              <span class="kpi-label">EAC (Estimación Final)</span>
+              <span class="kpi-value" style="color:#3b82f6">€172.084</span>
+              <span class="kpi-sub green">Ahorro proyectado: €7.916</span>
+            </div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-icon green-bg">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div class="kpi-body">
+              <span class="kpi-label">TCPI</span>
+              <span class="kpi-value" style="color:#10b981">0.945</span>
+              <span class="kpi-sub green">Sin sobreesfuerzo necesario</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- EVM Full Table -->
+        <div class="card">
+          <div class="card-header"><h3>Tabla Completa de Valor Ganado (EVM) — Corte Semana 8/14</h3></div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="data-table evm-table">
+                <thead>
+                  <tr>
+                    <th>Métrica</th>
+                    <th>Fórmula</th>
+                    <th>Valor</th>
+                    <th>Interpretación Directiva</th>
+                    <th>Semáforo</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>BAC</strong> — Presupuesto a la Conclusión</td>
+                    <td>—</td>
+                    <td id="evmTableBAC">€150.000</td>
+                    <td>Línea base económica total aprobada para 14 semanas</td>
+                    <td><span class="status-dot blue"></span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>PV</strong> — Valor Planificado</td>
+                    <td>—</td>
+                    <td id="evmTablePV">€85.714</td>
+                    <td>Costo presupuestado del trabajo programado a Sem 8 (58.3%)</td>
+                    <td><span class="status-dot blue"></span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>EV</strong> — Valor Ganado</td>
+                    <td>—</td>
+                    <td id="evmTableEV">€83.670</td>
+                    <td>Valor del trabajo efectivamente completado y certificado (56.9%)</td>
+                    <td><span class="status-dot blue"></span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>AC</strong> — Costo Real</td>
+                    <td>—</td>
+                    <td id="evmTableAC">€80.200</td>
+                    <td>Gasto real devengado a la fecha de corte</td>
+                    <td><span class="status-dot green"></span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>CV</strong> — Variación de Costo</td>
+                    <td>EV - AC</td>
+                    <td class="highlight-green" id="evmTableCV">+€3.470</td>
+                    <td>Favorable: superávit de €4.500 bajo presupuesto</td>
+                    <td><span class="status-dot green"></span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>SV</strong> — Variación de Cronograma</td>
+                    <td>EV - PV</td>
+                    <td class="highlight-amber" id="evmTableSV">-€2.044</td>
+                    <td>Desfase menor (2.3%), compensado con Fast-Tracking</td>
+                    <td><span class="status-dot yellow"></span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>CPI</strong> — Índice de Costo</td>
+                    <td>EV / AC</td>
+                    <td class="highlight-green" id="evmTableCPI">1.046</td>
+                    <td>Cada euro invertido genera €1.05 de valor — eficiencia sobresaliente</td>
+                    <td><span class="status-dot green"></span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>SPI</strong> — Índice de Cronograma</td>
+                    <td>EV / PV</td>
+                    <td class="highlight-amber" id="evmTableSPI">0.976</td>
+                    <td>Avance al 97.6% del planificado — dentro de tolerancia</td>
+                    <td><span class="status-dot yellow"></span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>EAC</strong> — Estimación a la Conclusión</td>
+                    <td>BAC / CPI</td>
+                    <td class="highlight-green" id="evmTableEAC">€143.403</td>
+                    <td>Proyección de ahorro final de €7.916</td>
+                    <td><span class="status-dot green"></span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>VAC</strong> — Variación a la Conclusión</td>
+                    <td>BAC - EAC</td>
+                    <td class="highlight-green" id="evmTableVAC">+€6.597</td>
+                    <td>Superávit proyectado al cierre del proyecto</td>
+                    <td><span class="status-dot green"></span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>TCPI</strong> — Desempeño para Concluir</td>
+                    <td>(BAC-EV)/(BAC-AC)</td>
+                    <td class="highlight-green" id="evmTableTCPI">0.950</td>
+                    <td>Rendimiento necesario < 1.0: cierre sin sobreesfuerzo</td>
+                    <td><span class="status-dot green"></span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cost Trend Chart -->
+        <div class="grid-2col">
+          <div class="card">
+            <div class="card-header"><h3>Curvas de Valor Ganado (PV vs EV vs AC)</h3></div>
+            <div class="card-body">
+              <canvas id="evmTrendChart" height="300"></canvas>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header"><h3>Tendencia de Índices CPI y SPI</h3></div>
+            <div class="card-body">
+              <canvas id="indexTrendChart" height="300"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cost Alerts -->
+        <div class="card">
+          <div class="card-header">
+            <h3>Alertas Financieras</h3>
+          </div>
+          <div class="card-body">
+            <div class="alert-list">
+              <div class="alert-item green-alert">
+                <span class="alert-icon">✅</span>
+                <div class="alert-content">
+                  <strong>CPI > 1.0 — Eficiencia de costo favorable</strong>
+                  <p>El proyecto genera más valor por cada euro invertido. Tendencia sostenida en las últimas 4 semanas.</p>
+                </div>
+                <span class="alert-time">Activo desde Sem 5</span>
+              </div>
+              <div class="alert-item amber-alert">
+                <span class="alert-icon">⚠️</span>
+                <div class="alert-content">
+                  <strong>SPI = 0.976 — Leve desfase de cronograma</strong>
+                  <p>Originado por el cierre vial del túnel (Sem 6). Compensado parcialmente con Fast-Tracking. Normalización prevista en Sprint 5.</p>
+                </div>
+                <span class="alert-time">Desde Sem 6</span>
+              </div>
+              <div class="alert-item green-alert">
+                <span class="alert-icon">✅</span>
+                <div class="alert-content">
+                  <strong>TCPI = 0.945 — Sin riesgo de sobreesfuerzo</strong>
+                  <p>El equipo puede cerrar el proyecto con un rendimiento inferior al actual, indicando holgura financiera saludable.</p>
+                </div>
+                <span class="alert-time">Confirmado</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- What-If Scenario Simulator Card -->
+        <div class="card" id="simulatorCard">
+          <div class="card-header">
+            <div>
+              <h3>Simulador de Escenarios Futuros (What-If Analysis)</h3>
+              <p class="card-subtitle" style="font-size:12px; color:var(--text-secondary); margin-top:4px;">Modelado predictivo sobre la Triple Restricción: Alcance, Tiempo y Costo hasta el cierre (Semana 14)</p>
+            </div>
+            <div class="sim-preset-buttons">
+              <button class="btn btn-preset active" id="presetProbable" onclick="setPresetScenario('probable')">📊 Más Probable</button>
+              <button class="btn btn-preset" id="presetOptimista" onclick="setPresetScenario('optimista')">🚀 Optimista</button>
+              <button class="btn btn-preset" id="presetPesimista" onclick="setPresetScenario('pesimista')">⚠️ Pesimista</button>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="simulator-grid">
+              <div class="sim-controls-col">
+                <div class="sim-control-group">
+                  <div class="sim-label-row">
+                    <label for="sliderEfficiency">Rendimiento Futuro del Equipo (SPI Proyectado):</label>
+                    <span class="sim-val" id="valEfficiency">0.98x</span>
+                  </div>
+                  <input type="range" id="sliderEfficiency" min="0.75" max="1.25" step="0.01" value="0.98" oninput="runSimulation()">
+                  <div class="sim-range-labels">
+                    <span>0.75x (Bajo)</span>
+                    <span>1.00x (Plan)</span>
+                    <span>1.25x (Alto)</span>
+                  </div>
+                </div>
+
+                <div class="sim-control-group">
+                  <div class="sim-label-row">
+                    <label for="sliderPermitDelay">Demora Permisos H4 Túnel (Días de Desfase):</label>
+                    <span class="sim-val" id="valPermitDelay">2 días</span>
+                  </div>
+                  <input type="range" id="sliderPermitDelay" min="0" max="21" step="1" value="2" oninput="runSimulation()">
+                  <div class="sim-range-labels">
+                    <span>0 días (Mitigado)</span>
+                    <span>10 días</span>
+                    <span>21 días (Crítico)</span>
+                  </div>
+                </div>
+
+                <div class="sim-control-group">
+                  <div class="sim-label-row">
+                    <label for="sliderContingencyCost">Gasto Extra Contingencia / Asesoría NIS2 (€):</label>
+                    <span class="sim-val" id="valContingencyCost">€1.500</span>
+                  </div>
+                  <input type="range" id="sliderContingencyCost" min="0" max="12450" step="250" value="1500" oninput="runSimulation()">
+                  <div class="sim-range-labels">
+                    <span>€0</span>
+                    <span>€6.000</span>
+                    <span>€12.450 (Reserva Máx.)</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="sim-results-col">
+                <div class="sim-results-grid">
+                  <div class="sim-kpi-card">
+                    <span class="sim-kpi-label">EAC Proyectado</span>
+                    <span class="sim-kpi-value" id="simEAC">€144.520</span>
+                    <span class="sim-kpi-sub" id="simEACSub">Línea Base: €150.000</span>
+                  </div>
+                  <div class="sim-kpi-card">
+                    <span class="sim-kpi-label">Variación Presupuestaria (VAC)</span>
+                    <span class="sim-kpi-value positive" id="simVAC">+€5.480</span>
+                    <span class="sim-kpi-sub" id="simVACSub">Superávit Proyectado</span>
+                  </div>
+                  <div class="sim-kpi-card">
+                    <span class="sim-kpi-label">Desviación en Cronograma</span>
+                    <span class="sim-kpi-value" id="simScheduleDiff">+1.8 días</span>
+                    <span class="sim-kpi-sub" id="simScheduleSub">Cierre estimado: Semana 14</span>
+                  </div>
+                  <div class="sim-kpi-card">
+                    <span class="sim-kpi-label">Semáforo de Gobernanza</span>
+                    <span class="sim-status-pill green" id="simTrafficLight">VERDE</span>
+                    <span class="sim-kpi-sub" id="simTrafficLightSub">Dentro de tolerancias PMO</span>
+                  </div>
+                </div>
+
+                <div class="sim-narrative-box" id="simNarrative">
+                  <strong>Diagnóstico de Simulación:</strong> El escenario actual proyecta finalizar con holgura de costo y cumplimiento cabal del hito final H5.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== SECTION 7: RUTA CRÍTICA & GANTT ===== -->
+      <section class="section" id="section-rutacritica">
+        <!-- Gantt Toolbar -->
+        <div class="section-toolbar">
+          <div class="section-toolbar-left">
+            <span class="card-badge red">Cronograma Maestro & WBS</span>
+            <span style="font-size:13px; color:var(--text-secondary);">Ruta crítica y actividades programadas para 14 semanas</span>
+          </div>
+          <div class="section-toolbar-right">
+            <button class="btn btn-primary btn-sm" onclick="openNewTaskModal()">➕ Nueva Actividad Gantt</button>
+            <button class="btn btn-outline btn-sm" onclick="resetAllData()">🔄 Restablecer Cronograma Oficial</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h3>Carta Gantt — Cronograma Maestro (14 Semanas)</h3>
+            <span class="card-badge red">Ruta Crítica Destacada</span>
+          </div>
+          <div class="card-body">
+            <div class="gantt-container" id="ganttChart">
+              <div class="gantt-header">
+                <div class="gantt-task-col">Actividad</div>
+                <div class="gantt-timeline">
+                  <span>S1</span><span>S2</span><span>S3</span><span>S4</span><span>S5</span><span>S6</span><span>S7</span><span>S8</span><span>S9</span><span>S10</span><span>S11</span><span>S12</span><span>S13</span><span>S14</span>
+                </div>
+              </div>
+              <div class="gantt-body">
+                <div id="ganttTasksContainer">
+                  <!-- Renderizado dinámico de actividades -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== SECTION 8: ESTADO DEL PROYECTO ===== -->
+      <section class="section" id="section-estado">
+        <div class="executive-summary">
+          <div class="es-header">
+            <h2>Resumen Ejecutivo — Estado del Proyecto</h2>
+            <div class="es-meta">
+              <span>Fecha de Corte: Semana 8/14 · Octubre 2026</span>
+              <span class="es-status green">PROYECTO SALUDABLE</span>
+            </div>
+          </div>
+
+          <div class="es-grid">
+            <div class="es-card">
+              <h4>📊 Avance General</h4>
+              <div class="es-comparison">
+                <div class="es-item">
+                  <span class="es-label">Avance Real (EV/BAC)</span>
+                  <span class="es-value">56.9%</span>
+                </div>
+                <div class="es-item">
+                  <span class="es-label">Avance Esperado (PV/BAC)</span>
+                  <span class="es-value">58.3%</span>
+                </div>
+                <div class="es-item amber-item">
+                  <span class="es-label">Desviación</span>
+                  <span class="es-value">-1.4%</span>
+                </div>
+              </div>
+              <p class="es-analysis">Desfase menor originado por cierre vial en Sem 6 (IMP-002). Compensado parcialmente mediante Fast-Tracking. Normalización completa prevista en Sprint 5.</p>
+            </div>
+
+            <div class="es-card">
+              <h4>💰 Situación Financiera</h4>
+              <div class="es-comparison">
+                <div class="es-item green-item">
+                  <span class="es-label">Costo Real</span>
+                  <span class="es-value">€98.000</span>
+                </div>
+                <div class="es-item">
+                  <span class="es-label">Presupuestado</span>
+                  <span class="es-value">€105.000</span>
+                </div>
+                <div class="es-item green-item">
+                  <span class="es-label">Ahorro Actual</span>
+                  <span class="es-value">+€4.500</span>
+                </div>
+              </div>
+              <p class="es-analysis">CPI de 1.046 indica eficiencia sobresaliente. Se proyecta cierre con ahorro de €7.916 (VAC). El TCPI de 0.945 confirma que el equipo cerrará sin sobreesfuerzo.</p>
+            </div>
+
+            <div class="es-card">
+              <h4>⚠️ Riesgos Vigentes</h4>
+              <div class="es-risk-list">
+                <div class="es-risk">
+                  <span class="risk-dot amber"></span>
+                  <span>Dependencia municipal para acceso a Túnel Principal (H4)</span>
+                </div>
+                <div class="es-risk">
+                  <span class="risk-dot amber"></span>
+                  <span>Single Point of Failure en conocimiento NIS2</span>
+                </div>
+                <div class="es-risk">
+                  <span class="risk-dot amber"></span>
+                  <span>Margen ajustado H4→H5 (3 semanas)</span>
+                </div>
+              </div>
+              <p class="es-analysis">3 riesgos activos con planes de mitigación implementados. 3 riesgos anteriores ya fueron mitigados exitosamente sin impacto residual.</p>
+            </div>
+
+            <div class="es-card">
+              <h4>🔄 Cambios Implementados</h4>
+              <div class="es-changes">
+                <span class="change-count">3</span>
+                <span class="change-desc">Solicitudes de cambio procesadas y cerradas con éxito.<br>Impacto acumulado: €0 adicional, 0 días de retraso neto.</span>
+              </div>
+            </div>
+
+            <div class="es-card">
+              <h4>👥 Recursos</h4>
+              <div class="es-resource-summary">
+                <div class="es-res-item">
+                  <span>Equipo activo</span>
+                  <span class="es-res-val">6 profesionales (5.0 FTE)</span>
+                </div>
+                <div class="es-res-item">
+                  <span>Utilización promedio</span>
+                  <span class="es-res-val">81.2%</span>
+                </div>
+                <div class="es-res-item">
+                  <span>Costo RRHH ejecutado</span>
+                  <span class="es-res-val">€53.546 de €93.968</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="es-card">
+              <h4>🎯 Próximos Hitos</h4>
+              <div class="es-milestones">
+                <div class="es-ms current-ms">
+                  <span class="es-ms-badge amber">EN CURSO</span>
+                  <strong>H3: Dashboard Piloto</strong>
+                  <span>Sem 8 · Avance: 85%</span>
+                </div>
+                <div class="es-ms">
+                  <span class="es-ms-badge gray">PRÓXIMO</span>
+                  <strong>H4: Escalado Túnel Principal</strong>
+                  <span>Sem 11 · Pendiente permisos municipales</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stakeholder Communication Strategy -->
+          <div class="card" style="margin-top:20px">
+            <div class="card-header"><h3>Estrategia de Comunicación por Stakeholder</h3></div>
+            <div class="card-body">
+              <div class="stakeholder-grid">
+                <div class="sh-card">
+                  <div class="sh-icon">🏛️</div>
+                  <h4>Alcaldía y Concejo Municipal</h4>
+                  <p>Semáforo verde con eficiencia presupuestaria (+€4.500). Eliminación de incidentes imprevistos en túnel piloto. <strong>ROI confirmado: Payback 1.3 años.</strong></p>
+                  <span class="sh-freq">📅 Reporte quincenal</span>
+                </div>
+                <div class="sh-card">
+                  <div class="sh-icon">🇪🇺</div>
+                  <h4>Auditores Unión Europea</h4>
+                  <p>Certificado de hitos H1 y H2 completados. Validación formal de ciberseguridad NIS2. <strong>Fondos de subvención liberables.</strong></p>
+                  <span class="sh-freq">📅 Informe bimestral</span>
+                </div>
+                <div class="sh-card">
+                  <div class="sh-icon">🔧</div>
+                  <h4>Cuadrillas de Mantenimiento</h4>
+                  <p>Tablero de control operativo en tiempo real con GIS y sistema de tickets priorizados. <strong>Respuesta inmediata en terreno.</strong></p>
+                  <span class="sh-freq">📅 Acceso continuo 24/7</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== SECTION 9: REPORTES ===== -->
+      <section class="section" id="section-reportes">
+        <!-- Sub-navegación entre Informes Manuales y Generador Automático -->
+        <div class="reports-subnav">
+          <button class="reports-subnav-btn active" id="tabBtnManualReports" onclick="switchReportsTab('manual')">
+            📑 Informes de Gestión y Actas Manuales
+          </button>
+          <button class="reports-subnav-btn" id="tabBtnAutoReports" onclick="switchReportsTab('auto')">
+            ⚡ Generador Automático de Reportes (EVM, Técnico, etc.)
+          </button>
+        </div>
+
+        <!-- TAB 1: INFORMES MANUALES, MINUTAS Y ACTAS CCB -->
+        <div id="viewManualReports">
+          <div class="section-toolbar">
+            <div class="section-toolbar-left" style="flex:1;">
+              <input type="text" id="reportSearchInput" class="form-control" style="max-width:280px; font-size:12px;" placeholder="🔍 Buscar por título, autor o contenido..." oninput="renderManualReports(document.getElementById('reportTypeFilter').value, this.value)">
+              <select id="reportTypeFilter" class="form-control" style="max-width:180px; font-size:12px;" onchange="renderManualReports(this.value, document.getElementById('reportSearchInput').value)">
+                <option value="all">Todos los Tipos</option>
+                <option value="Ejecutivo">Ejecutivo</option>
+                <option value="Acta CCB">Acta CCB</option>
+                <option value="Auditoría">Auditoría</option>
+                <option value="Financiero">Financiero</option>
+                <option value="Incidente Operativo">Incidente Operativo</option>
+                <option value="Técnico">Técnico</option>
+              </select>
+            </div>
+            <div class="section-toolbar-right">
+              <button class="btn btn-primary btn-sm" onclick="openNewReportModal()">➕ Redactar Nuevo Informe / Acta</button>
+              <button class="btn btn-outline btn-sm" onclick="exportDataBackup()">💾 Exportar Todo</button>
+            </div>
+          </div>
+
+          <!-- Grid interactiva de informes cargados dinámicamente -->
+          <div class="manual-reports-grid" id="manualReportsGrid">
+            <!-- Renderizado desde app.js -->
+          </div>
+        </div>
+
+        <!-- TAB 2: GENERADOR AUTOMÁTICO DE REPORTES -->
+        <div id="viewAutoReports" style="display:none;">
+          <div class="card">
+            <div class="card-header">
+              <h3>Generador Automático de Reportes Especializados</h3>
+            </div>
+            <div class="card-body">
+              <p class="card-desc">Compilación en tiempo real calculada con las métricas de valor ganado, estado de riesgos, cambios y telemetría del proyecto.</p>
+              <div class="report-grid">
+                <div class="report-card" onclick="generateReport('ejecutivo')">
+                  <div class="rp-icon">📋</div>
+                  <h4>Reporte Ejecutivo</h4>
+                  <p>Resumen directivo: triple restricción, estado de la línea base, riesgos mayores y dictamen CCB.</p>
+                  <div class="rp-actions">
+                    <button class="btn btn-primary" onclick="event.stopPropagation(); generateReport('ejecutivo')">Compilar Informe</button>
+                  </div>
+                </div>
+                <div class="report-card" onclick="generateReport('financiero')">
+                  <div class="rp-icon">💰</div>
+                  <h4>Reporte Financiero (EVM)</h4>
+                  <p>Auditoría metrológica completa: BAC, PV, EV, AC, CPI, SPI, EAC, VAC y factor TCPI.</p>
+                  <div class="rp-actions">
+                    <button class="btn btn-primary" onclick="event.stopPropagation(); generateReport('financiero')">Compilar Informe</button>
+                  </div>
+                </div>
+                <div class="report-card" onclick="generateReport('tecnico')">
+                  <div class="rp-icon">⚙️</div>
+                  <h4>Reporte Técnico & Calidad</h4>
+                  <p>KPIs de software: SLA de disponibilidad, latencia, cobertura de testing unitario y mTLS NIS2.</p>
+                  <div class="rp-actions">
+                    <button class="btn btn-primary" onclick="event.stopPropagation(); generateReport('tecnico')">Compilar Informe</button>
+                  </div>
+                </div>
+                <div class="report-card" onclick="generateReport('riesgos')">
+                  <div class="rp-icon">⚠️</div>
+                  <h4>Reporte Integral de Riesgos</h4>
+                  <p>Registro de eventualidades, planes de mitigación, contingencia y criticidad en matriz.</p>
+                  <div class="rp-actions">
+                    <button class="btn btn-primary" onclick="event.stopPropagation(); generateReport('riesgos')">Compilar Informe</button>
+                  </div>
+                </div>
+                <div class="report-card" onclick="generateReport('cambios')">
+                  <div class="rp-icon">🔄</div>
+                  <h4>Libro de Control de Cambios</h4>
+                  <p>Trazabilidad histórica de todas las solicitudes de cambio (RFC-001/002/003) y dictamen CCB.</p>
+                  <div class="rp-actions">
+                    <button class="btn btn-primary" onclick="event.stopPropagation(); generateReport('cambios')">Compilar Informe</button>
+                  </div>
+                </div>
+                <div class="report-card" onclick="generateReport('avance')">
+                  <div class="rp-icon">📊</div>
+                  <h4>Acta de Avance de Hitos</h4>
+                  <p>Cumplimiento formal de H1, H2, calibración de H3 y programación hacia H4 y H5.</p>
+                  <div class="rp-actions">
+                    <button class="btn btn-primary" onclick="event.stopPropagation(); generateReport('avance')">Compilar Informe</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Report Preview Modal (Mejorado con Edición en Pantalla) -->
+        <div class="report-preview" id="reportPreview" style="display:none">
+          <div class="rp-modal">
+            <div class="rp-modal-header">
+              <h3 id="reportTitle">Reporte Ejecutivo</h3>
+              <div class="rp-modal-actions">
+                <button class="rp-btn" id="btnEditReportPreview" onclick="toggleEditReportPreview()" title="Permite editar cualquier texto del informe directamente en pantalla antes de imprimir o exportar">✏️ Editar en Pantalla</button>
+                <button class="rp-btn rp-btn-primary" onclick="printReport()">🖨️ Imprimir / PDF</button>
+                <button class="rp-btn" onclick="exportReportMarkdown()">💾 Descargar MD</button>
+                <button class="rp-btn" onclick="copyReportText()">📋 Copiar</button>
+                <button class="rp-btn" onclick="exportReportCSV()">📊 CSV</button>
+                <button onclick="closeReport()" style="font-size:18px; margin-left:8px; background:none; border:none; color:var(--text-muted); cursor:pointer;">✕</button>
+              </div>
+            </div>
+            <div class="rp-modal-body" id="reportBody">
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== SECTION 10: SISTEMA DE ALERTAS ===== -->
+      <section class="section" id="section-alertas">
+        <div class="card">
+          <div class="card-header">
+            <h3>Sistema de Alertas — Semáforo Tricolor</h3>
+          </div>
+          <div class="card-body">
+            <div class="alert-system">
+              <div class="as-level green-level">
+                <div class="as-indicator">
+                  <div class="as-light green-light active-light"></div>
+                  <span class="as-label">VERDE — Dentro de Objetivos</span>
+                </div>
+                <div class="as-details">
+                  <p><strong>Criterio de activación:</strong> Todos los indicadores dentro de parámetros planificados. CPI ≥ 1.0 y SPI ≥ 0.95.</p>
+                  <div class="as-items">
+                    <div class="as-item">
+                      <span class="as-check">✅</span>
+                      <span>CPI = 1.046 — Eficiencia de costo favorable</span>
+                    </div>
+                    <div class="as-item">
+                      <span class="as-check">✅</span>
+                      <span>Uptime IoT = 99.88% — Superior al SLA</span>
+                    </div>
+                    <div class="as-item">
+                      <span class="as-check">✅</span>
+                      <span>Latencia Alertas = 3.2s — Bajo umbral de 5s</span>
+                    </div>
+                    <div class="as-item">
+                      <span class="as-check">✅</span>
+                      <span>Cobertura Tests = 92.4% — Sobre meta</span>
+                    </div>
+                    <div class="as-item">
+                      <span class="as-check">✅</span>
+                      <span>3/3 imprevistos resueltos sin costo adicional</span>
+                    </div>
+                    <div class="as-item">
+                      <span class="as-check">✅</span>
+                      <span>NIS2 cumplimiento 100%</span>
+                    </div>
+                    <div class="as-item">
+                      <span class="as-check">✅</span>
+                      <span>VAC = +€7.916 superávit proyectado</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="as-level amber-level">
+                <div class="as-indicator">
+                  <div class="as-light amber-light active-light"></div>
+                  <span class="as-label">AMARILLO — Desviación Detectada</span>
+                </div>
+                <div class="as-details">
+                  <p><strong>Criterio de activación:</strong> Al menos un indicador fuera de rango óptimo pero dentro de tolerancia. SPI entre 0.90 y 0.95, o riesgos activos sin mitigar.</p>
+                  <div class="as-items">
+                    <div class="as-item">
+                      <span class="as-warn">⚠️</span>
+                      <span>SPI = 0.976 — Leve desfase de cronograma (2.3%)</span>
+                    </div>
+                    <div class="as-item">
+                      <span class="as-warn">⚠️</span>
+                      <span>R4: Pendiente gestión de permisos municipales para H4</span>
+                    </div>
+                    <div class="as-item">
+                      <span class="as-warn">⚠️</span>
+                      <span>R5: Conocimiento NIS2 concentrado en una persona</span>
+                    </div>
+                    <div class="as-item">
+                      <span class="as-warn">⚠️</span>
+                      <span>R6: Margen ajustado H4→H5 requiere planificación cuidadosa</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="as-level red-level">
+                <div class="as-indicator">
+                  <div class="as-light red-light"></div>
+                  <span class="as-label">ROJO — Acción Inmediata Requerida</span>
+                </div>
+                <div class="as-details">
+                  <p><strong>Criterio de activación:</strong> CPI < 0.9, SPI < 0.9, fallo de seguridad crítico, pérdida de datos, o incumplimiento regulatorio que comprometa fondos.</p>
+                  <div class="as-items">
+                    <div class="as-item">
+                      <span class="as-ok">—</span>
+                      <span>No hay alertas rojas activas en este momento</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Alert Decision Matrix -->
+        <div class="card">
+          <div class="card-header"><h3>Matriz de Decisión por Nivel de Alerta</h3></div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Nivel</th>
+                    <th>Indicadores</th>
+                    <th>Acción Requerida</th>
+                    <th>Responsable</th>
+                    <th>Plazo</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="status-pill green">VERDE</span></td>
+                    <td>CPI ≥ 1.0, SPI ≥ 0.95, sin riesgos críticos</td>
+                    <td>Monitoreo rutinario, reporte quincenal estándar</td>
+                    <td>Project Manager</td>
+                    <td>Quincenal</td>
+                  </tr>
+                  <tr>
+                    <td><span class="status-pill amber">AMARILLO</span></td>
+                    <td>0.90 ≤ SPI < 0.95, o riesgos activos, o CPI entre 0.9-1.0</td>
+                    <td>Comité extraordinario, plan de acción correctiva, reporte semanal</td>
+                    <td>PM + Comité CCB</td>
+                    <td>48 horas</td>
+                  </tr>
+                  <tr>
+                    <td><span class="status-pill red">ROJO</span></td>
+                    <td>CPI < 0.9, SPI < 0.9, fallo crítico, incumplimiento regulatorio</td>
+                    <td>Escalación inmediata a patrocinadores, replanificación total, auditoría de emergencia</td>
+                    <td>PM + Dirección + Stakeholders</td>
+                    <td>Inmediato</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div><!-- /contentArea -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+
+  <!-- ==================== MODALES DE GESTIÓN Y EDICIÓN MANUAL ==================== -->
+
+  <!-- A. MODAL SOLICITUD DE CAMBIO (RFC) -->
+  <div class="pmo-modal-overlay" id="modalRfc">
+    <div class="pmo-modal">
+      <div class="pmo-modal-header">
+        <h3 id="rfcModalTitle">Registrar Nueva Solicitud de Cambio (RFC)</h3>
+        <button class="pmo-modal-close" onclick="closeNewRfcModal()">✕</button>
+      </div>
+      <form onsubmit="submitNewRfc(event)">
+        <div class="pmo-modal-body">
+          <input type="hidden" id="rfcEditingId" value="">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Código RFC</label>
+              <input type="text" id="rfcCode" class="form-control" required placeholder="RFC-004">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Badge de Incidente</label>
+              <input type="text" id="rfcBadge" class="form-control" placeholder="IMP-004">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Título del Cambio / Problema</label>
+            <input type="text" id="rfcTitle" class="form-control" required placeholder="Descripción concisa del cambio">
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Tipo de Cambio</label>
+              <select id="rfcType" class="form-control">
+                <option value="Técnico / Integración Externa">Técnico / Integración Externa</option>
+                <option value="Operativo / Infraestructura Física">Operativo / Infraestructura Física</option>
+                <option value="Normativo / Gobernanza UE">Normativo / Gobernanza UE</option>
+                <option value="Gestión / Recursos y Horas">Gestión / Recursos y Horas</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Responsable Asignado</label>
+              <input type="text" id="rfcResponsible" class="form-control" required placeholder="Ej: Arquitecto Cloud">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Nivel de Impacto</label>
+              <select id="rfcImpact" class="form-control">
+                <option value="BAJO">BAJO</option>
+                <option value="MEDIO">MEDIO</option>
+                <option value="ALTO" selected>ALTO</option>
+                <option value="CRÍTICO">CRÍTICO</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Resumen de Impacto</label>
+              <input type="text" id="rfcImpactText" class="form-control" placeholder="Ej: Afecta 5 días de desarrollo">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Problema Detectado / Causa Raíz</label>
+            <textarea id="rfcProblem" class="form-control" rows="2" required placeholder="Describa la causa y origen del imprevisto"></textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Solución Propuesta / Adoptada</label>
+            <textarea id="rfcSolution" class="form-control" rows="2" required placeholder="Estrategia técnica o de gestión para absorber el cambio"></textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Justificación Técnica & Dictamen CCB</label>
+            <textarea id="rfcJustification" class="form-control" rows="2" placeholder="Justificación ante el Comité de Cambios"></textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Estado Oficial</label>
+            <select id="rfcStatus" class="form-control">
+              <option value="EN EVALUACIÓN">EN EVALUACIÓN</option>
+              <option value="EN IMPLEMENTACIÓN">EN IMPLEMENTACIÓN</option>
+              <option value="CERRADO" selected>CERRADO</option>
+            </select>
+          </div>
+        </div>
+        <div class="pmo-modal-footer">
+          <button type="button" class="btn btn-outline" onclick="closeNewRfcModal()">Cancelar</button>
+          <button type="submit" class="btn btn-primary">Guardar Solicitud</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- B. MODAL RIESGOS Y EVENTUALIDADES -->
+  <div class="pmo-modal-overlay" id="modalRisk">
+    <div class="pmo-modal">
+      <div class="pmo-modal-header">
+        <h3 id="riskModalTitle">Registrar Nuevo Riesgo en la Matriz</h3>
+        <button class="pmo-modal-close" onclick="closeNewRiskModal()">✕</button>
+      </div>
+      <form onsubmit="submitNewRisk(event)">
+        <div class="pmo-modal-body">
+          <input type="hidden" id="riskEditingId" value="">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Código de Riesgo</label>
+              <input type="text" id="riskId" class="form-control" required placeholder="R7">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Categoría</label>
+              <select id="riskType" class="form-control">
+                <option value="Técnico">Técnico</option>
+                <option value="Operativo">Operativo</option>
+                <option value="Normativo">Normativo</option>
+                <option value="Externo">Externo</option>
+                <option value="Recursos">Recursos</option>
+                <option value="Cronograma">Cronograma</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Título del Riesgo</label>
+            <input type="text" id="riskTitle" class="form-control" required placeholder="Descripción del riesgo">
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Probabilidad</label>
+              <select id="riskProb" class="form-control">
+                <option value="Alta">Alta</option>
+                <option value="Media" selected>Media</option>
+                <option value="Baja">Baja</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Impacto</label>
+              <select id="riskImpact" class="form-control">
+                <option value="Bajo">Bajo</option>
+                <option value="Medio">Medio</option>
+                <option value="Alto" selected>Alto</option>
+                <option value="Crítico">Crítico</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Plan de Mitigación (Preventivo)</label>
+            <textarea id="riskMitigation" class="form-control" rows="2" required placeholder="Acciones preventivas para evitar que el riesgo se materialice"></textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Plan de Contingencia (Correctivo)</label>
+            <textarea id="riskContingency" class="form-control" rows="2" placeholder="Acciones en caso de materialización del evento"></textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Estado</label>
+            <select id="riskStatus" class="form-control">
+              <option value="Monitoreo">Monitoreo</option>
+              <option value="En Curso" selected>En Curso</option>
+              <option value="Mitigado">Mitigado</option>
+              <option value="Cerrado">Cerrado</option>
+            </select>
+          </div>
+        </div>
+        <div class="pmo-modal-footer">
+          <button type="button" class="btn btn-outline" onclick="closeNewRiskModal()">Cancelar</button>
+          <button type="submit" class="btn btn-primary">Guardar Riesgo</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- C. MODAL ACTIVIDADES CARTA GANTT -->
+  <div class="pmo-modal-overlay" id="modalTask">
+    <div class="pmo-modal">
+      <div class="pmo-modal-header">
+        <h3 id="taskModalTitle">Agregar Actividad al Cronograma Gantt</h3>
+        <button class="pmo-modal-close" onclick="closeNewTaskModal()">✕</button>
+      </div>
+      <form onsubmit="submitNewTask(event)">
+        <div class="pmo-modal-body">
+          <input type="hidden" id="taskEditingIndex" value="-1">
+          <div class="form-group">
+            <label class="form-label">Nombre de la Actividad / Tarea</label>
+            <input type="text" id="taskName" class="form-control" required placeholder="Ej: Pruebas de Carga en Túnel Secundario">
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Semana de Inicio (1-14)</label>
+              <input type="number" id="taskStart" class="form-control" min="1" max="14" required value="8">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Semana de Fin (1-14)</label>
+              <input type="number" id="taskEnd" class="form-control" min="1" max="14" required value="10">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Hito / Etiqueta Asociada</label>
+              <input type="text" id="taskMilestone" class="form-control" placeholder="H4, RFC-002, etc.">
+            </div>
+            <div class="form-group" style="display:flex; align-items:center; margin-top:24px; gap:8px;">
+              <input type="checkbox" id="taskCritical" style="width:18px; height:18px;">
+              <label for="taskCritical" class="form-label" style="cursor:pointer; margin:0;">¿Pertenece a la Ruta Crítica?</label>
+            </div>
+          </div>
+        </div>
+        <div class="pmo-modal-footer">
+          <button type="button" class="btn btn-outline" onclick="closeNewTaskModal()">Cancelar</button>
+          <button type="submit" class="btn btn-primary">Guardar Actividad</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- D. MODAL EDICIÓN MÉTRICAS EVM -->
+  <div class="pmo-modal-overlay" id="modalMetrics">
+    <div class="pmo-modal">
+      <div class="pmo-modal-header">
+        <h3>Editar Parámetros y Línea Base de Gestión (EVM)</h3>
+        <button class="pmo-modal-close" onclick="closeEditMetricsModal()">✕</button>
+      </div>
+      <form onsubmit="submitEditMetrics(event)">
+        <div class="pmo-modal-body">
+          <p style="font-size:12.5px; color:var(--text-muted); margin:0;">Modifique los valores para recalcular automáticamente los índices CPI, SPI, EAC, VAC y gráficos en tiempo real.</p>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">BAC — Presupuesto a la Conclusión (€)</label>
+              <input type="number" id="inputBAC" class="form-control" step="100" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">PV — Valor Planificado al Corte (€)</label>
+              <input type="number" id="inputPV" class="form-control" step="100" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">EV — Valor Ganado (Avance Real Certificado €)</label>
+              <input type="number" id="inputEV" class="form-control" step="100" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">AC — Costo Real Incurrido (€)</label>
+              <input type="number" id="inputAC" class="form-control" step="100" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Semana de Corte Actual</label>
+              <input type="number" id="inputWeek" class="form-control" min="1" max="14" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Total de Semanas del Proyecto</label>
+              <input type="number" id="inputTotalWeeks" class="form-control" min="1" max="52" required value="14">
+            </div>
+          </div>
+        </div>
+        <div class="pmo-modal-footer">
+          <button type="button" class="btn btn-outline" onclick="closeEditMetricsModal()">Cancelar</button>
+          <button type="submit" class="btn btn-primary">Recalcular Sistema</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- E. MODAL REDACCIÓN DE INFORMES MANUALES -->
+  <div class="pmo-modal-overlay" id="modalReport">
+    <div class="pmo-modal" style="max-width:760px;">
+      <div class="pmo-modal-header">
+        <h3 id="reportModalTitle">Redactar Nuevo Informe de Gestión / Acta</h3>
+        <button class="pmo-modal-close" onclick="closeReportModal()">✕</button>
+      </div>
+      <form onsubmit="submitReport(event)">
+        <div class="pmo-modal-body">
+          <input type="hidden" id="reportEditingId" value="">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Código del Informe</label>
+              <input type="text" id="reportId" class="form-control" required placeholder="INF-004">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Tipo de Informe</label>
+              <select id="reportType" class="form-control">
+                <option value="Ejecutivo">Ejecutivo</option>
+                <option value="Acta CCB">Acta CCB</option>
+                <option value="Auditoría">Auditoría</option>
+                <option value="Financiero">Financiero</option>
+                <option value="Incidente Operativo">Incidente Operativo</option>
+                <option value="Técnico">Técnico</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Título del Informe / Minuta</label>
+            <input type="text" id="reportInputTitle" class="form-control" required placeholder="Ej: Minuta de Coordinación Técnica con Obras Municipales">
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Autor / Responsable</label>
+              <input type="text" id="reportAuthor" class="form-control" required placeholder="Ing. Salazar (Lead PMO)">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Fecha del Informe</label>
+              <input type="date" id="reportDate" class="form-control" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Semana Asociada</label>
+              <input type="number" id="reportWeek" class="form-control" min="1" max="14" value="8">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Estado del Documento</label>
+              <select id="reportStatus" class="form-control">
+                <option value="Borrador">Borrador</option>
+                <option value="En Revisión">En Revisión</option>
+                <option value="Aprobado" selected>Aprobado</option>
+                <option value="Publicado">Publicado</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Prioridad</label>
+              <select id="reportPriority" class="form-control">
+                <option value="Normal">Normal</option>
+                <option value="Alta" selected>Alta</option>
+                <option value="Confidencial">Confidencial</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Resumen Ejecutivo</label>
+            <textarea id="reportSummary" class="form-control" rows="2" required placeholder="Síntesis de los puntos principales y objetivos del informe"></textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Diagnóstico, Observaciones & Hallazgos</label>
+            <textarea id="reportFindings" class="form-control" rows="2" placeholder="Detalle técnico de lo detectado durante el período"></textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Acuerdos & Decisiones Adoptadas</label>
+            <textarea id="reportAgreements" class="form-control" rows="2" placeholder="Resoluciones formales y consensos alcanzados"></textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Próximos Pasos & Acciones de Seguimiento</label>
+            <textarea id="reportNextSteps" class="form-control" rows="2" placeholder="Compromisos y fechas de entrega para el siguiente sprint"></textarea>
+          </div>
+        </div>
+        <div class="pmo-modal-footer">
+          <button type="button" class="btn btn-outline" onclick="closeReportModal()">Cancelar</button>
+          <button type="submit" class="btn btn-primary">Guardar Informe</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- F. MODAL AJUSTE DE TELEMETRÍA TÉCNICA -->
+  <div class="pmo-modal-overlay" id="modalTelemetry">
+    <div class="pmo-modal">
+      <div class="pmo-modal-header">
+        <h3>Ajustar Parámetros de Telemetría Técnica</h3>
+        <button class="pmo-modal-close" onclick="closeTelemetryModal()">✕</button>
+      </div>
+      <form onsubmit="submitTelemetry(event)">
+        <div class="pmo-modal-body">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Disponibilidad SLA (%)</label>
+              <input type="number" id="inputUptime" class="form-control" step="0.01" min="0" max="100" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Latencia de Alertas (segundos)</label>
+              <input type="number" id="inputLatency" class="form-control" step="0.1" min="0" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Cobertura de Tests Unitarios (%)</label>
+              <input type="number" id="inputTestCoverage" class="form-control" step="0.1" min="0" max="100" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Sensores IoT Activos</label>
+              <input type="number" id="inputSensors" class="form-control" min="0" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Tasa de Error Ingesta API (%)</label>
+              <input type="number" id="inputErrorRate" class="form-control" step="0.01" min="0" max="100" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Estado Global del Sistema</label>
+              <input type="text" id="inputStatusText" class="form-control" placeholder="Ej: Proyecto Saludable">
+            </div>
+          </div>
+        </div>
+        <div class="pmo-modal-footer">
+          <button type="button" class="btn btn-outline" onclick="closeTelemetryModal()">Cancelar</button>
+          <button type="submit" class="btn btn-primary">Aplicar Cambios</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- G. MODAL IMPORTACIÓN DE DATOS (JSON) -->
+  <div class="pmo-modal-overlay" id="modalImportData">
+    <div class="pmo-modal">
+      <div class="pmo-modal-header">
+        <h3>Importar Datos y Restaurar Estado (JSON)</h3>
+        <button class="pmo-modal-close" onclick="closeImportDataModal()">✕</button>
+      </div>
+      <form onsubmit="submitImportData(event)">
+        <div class="pmo-modal-body">
+          <p style="font-size:12.5px; color:var(--text-muted); margin:0;">Cargue un archivo .json de respaldo o pegue el contenido para restaurar todas las métricas, RFCs, riesgos e informes.</p>
+          <div class="form-group">
+            <label class="form-label">Seleccionar archivo JSON local</label>
+            <input type="file" accept=".json" class="form-control" onchange="handleImportFile(event)">
+          </div>
+          <div class="form-group">
+            <label class="form-label">O pegue el contenido JSON aquí</label>
+            <textarea id="importJsonText" class="form-control" rows="6" placeholder="{ &quot;evm&quot;: { ... } }"></textarea>
+          </div>
+        </div>
+        <div class="pmo-modal-footer">
+          <button type="button" class="btn btn-outline" onclick="closeImportDataModal()">Cancelar</button>
+          <button type="submit" class="btn btn-primary">Importar y Aplicar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+</body>
+</html>
